@@ -13,7 +13,7 @@ type
     FFileName: string;
     FHandle: THandle;
   protected
-    procedure Write(const Msg: string);
+    procedure Write(const Msg: string); virtual;
   public
     constructor Create(const Filename: string);
     destructor Destroy; override;
@@ -29,7 +29,7 @@ type
 
   TNullLog = class(TFileLog)
   protected
-    procedure Write(const Msg: string);
+    procedure Write(const Msg: string); override;
   public
     constructor Create;
     destructor Destroy; override;
