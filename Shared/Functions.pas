@@ -38,6 +38,7 @@ type
     class function IsWindows64Bit: Boolean; static;
     class function IsProcess64Bit(const Handle: THandle): Boolean; static;
     class function GetProcesses: TProcessArray; static;
+    class function GetDebugPrivilege: Boolean; static;
   end;
 
 implementation
@@ -159,6 +160,27 @@ begin
       finally
         CloseHandle(ProcHandle);
       end;
+    end;
+  end;
+end;
+
+class function TFunctions.GetDebugPrivilege: Boolean;
+var
+  Token: THandle;
+  TP, TPPrev: TTokenPrivileges;
+  Dummy: DWORD;
+const
+  SE_DEBUG_NAME = 'SeDebugPrivilege';
+begin
+  Result := False;
+  if OpenProcessToken(GetCurrentProcess, TOKEN_ADJUST_PRIVILEGES or TOKEN_QUERY, Token) then
+  begin
+    ZeroMemory(@TP, sizeof(TP));
+    if LookupPrivilegeValue(nil, 'SeDebugPrivilege', TP.Privileges[0].Luid) then
+    begin
+      TP.Privileges[0].Attributes := SE_PRIVILEGE_ENABLED;
+      TP.PrivilegeCount := 1;
+      Result := AdjustTokenPrivileges(Token, False, TP, SizeOf(TP), TPPrev, Dummy);
     end;
   end;
 end;

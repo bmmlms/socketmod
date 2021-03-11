@@ -41,6 +41,9 @@ begin
     if WSAStartup(MakeWord(2, 2), Data) = SOCKET_ERROR then
       raise Exception.Create('Error initializing Winsock.');
 
+    if not TFunctions.GetDebugPrivilege then
+      TFunctions.MessageBox(0, 'Unable to aquire debug privilege. If an application does not work with SocketMod start SocketMod as administrator.', 'Error', MB_ICONERROR);
+
     Application.Initialize;
     Application.CaptureExceptions := False;
     Application.Title := APP_NAME;

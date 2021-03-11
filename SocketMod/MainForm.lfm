@@ -14,6 +14,7 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   OnShow = FormShow
   Position = poScreenCenter
+  LCLVersion = '2.0.12.0'
   object GroupBoxControl: TGroupBox
     Left = 4
     Height = 92

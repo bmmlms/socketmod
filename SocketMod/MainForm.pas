@@ -193,10 +193,10 @@ begin
   else
     FLogListBox.Log(Format('Injecting into process %d ("%s")', [PID, WindowText]));
 
-  ProcessHandle := OpenProcess(PROCESS_ALL_ACCESS, False, PID);
+  ProcessHandle := OpenProcess(PROCESS_CREATE_THREAD or PROCESS_QUERY_INFORMATION or PROCESS_VM_OPERATION or PROCESS_VM_WRITE or PROCESS_VM_READ, False, PID);
   if ProcessHandle = 0 then
   begin
-    FLogListBox.Log('Error opening process', mtError);
+    FLogListBox.Log('OpenProcess() failed with error %d'.Format([GetLastError]), mtError);
     Exit;
   end;
 
