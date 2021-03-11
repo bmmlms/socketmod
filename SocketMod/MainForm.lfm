@@ -1,0 +1,164 @@
+object frmMain: TfrmMain
+  Left = 308
+  Height = 360
+  Top = 250
+  Width = 547
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'SocketMod'
+  ChildSizing.LeftRightSpacing = 4
+  ChildSizing.TopBottomSpacing = 4
+  ChildSizing.VerticalSpacing = 4
+  ClientHeight = 360
+  ClientWidth = 547
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  Position = poScreenCenter
+  object GroupBoxControl: TGroupBox
+    Left = 4
+    Height = 92
+    Top = 4
+    Width = 539
+    Align = alTop
+    AutoSize = True
+    Caption = ' Control '
+    ChildSizing.LeftRightSpacing = 4
+    ChildSizing.TopBottomSpacing = 4
+    ClientHeight = 72
+    ClientWidth = 535
+    TabOrder = 0
+    object PanelNetworkAdapter: TPanel
+      Left = 4
+      Height = 15
+      Top = 4
+      Width = 527
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Bottom = 4
+      BevelOuter = bvNone
+      ClientHeight = 15
+      ClientWidth = 527
+      Constraints.MinWidth = 350
+      TabOrder = 0
+      object LabelNetworkAdapter: TLabel
+        Left = 0
+        Height = 15
+        Top = 0
+        Width = 527
+        Align = alTop
+        Caption = 'Force ethernet traffic on interface:'
+        Font.Height = 16
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object PanelInject: TPanel
+      Left = 4
+      Height = 26
+      Top = 42
+      Width = 527
+      Align = alTop
+      AutoSize = True
+      BorderSpacing.Bottom = 4
+      BevelOuter = bvNone
+      ClientHeight = 26
+      ClientWidth = 527
+      TabOrder = 1
+      object CheckBoxAutoInject: TCheckBox
+        Left = 0
+        Height = 26
+        Top = 0
+        Width = 168
+        Align = alLeft
+        Caption = 'Process monitoring enabled'
+        OnClick = CheckBoxAutoInjectClick
+        TabOrder = 0
+      end
+      object BitBtnInject: TBitBtn
+        Left = 383
+        Height = 26
+        Top = 0
+        Width = 144
+        Align = alRight
+        AutoSize = True
+        Caption = 'Manual injection...'
+        Glyph.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0003000000280000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0006000000D40000003500000000000000000000000200000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0003000000B3000000E7000000350000001F000000AB0000001D000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000E000000B8000000E8000000D9000000FB000000D20000001D0000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000002D000000F7000000D000000038000000DB000000D20000
+          001D000000000000000000000000000000000000000000000000000000000000
+          000000000014000000D3000000DC0000001C00000035000000EE000000F30000
+          00D20000001D0000000000000000000000000000000000000000000000000000
+          00000000000400000095000000F400000053000000130000007E000000280000
+          00E5000000D20000001D00000000000000000000000000000000000000000000
+          0000000000000000000500000095000000F40000005300000001000000540000
+          00F8000000E7000000D30000001D000000000000000000000000000000000000
+          000000000000000000000000000500000095000000F400000053000000130000
+          005C00000026000000F1000000C7000000050000000000000000000000000000
+          00000000000000000000000000000000000500000095000000F4000000530000
+          00070000009E000000F30000004B000000020000000000000000000000000000
+          0000000000000000000000000000000000000000000500000096000000F30000
+          00BD000000FC000000EA00000049000000A80000002200000000000000000000
+          0000000000000000000000000000000000000000000000000005000000960000
+          00F000000055000000BB000000FD000000DB0000002200000000000000000000
+          0000000000000000000000000000000000000000000000000000000000050000
+          002D00000011000000CA000000DB000000250000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000060000008800000025000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000100000000000000000000000000000000
+        }
+        OnClick = BitBtnInjectClick
+        TabOrder = 1
+      end
+    end
+    object PanelOptions: TPanel
+      Left = 4
+      Height = 19
+      Top = 23
+      Width = 527
+      Align = alTop
+      AutoSize = True
+      BevelOuter = bvNone
+      ClientHeight = 19
+      ClientWidth = 527
+      TabOrder = 2
+      object CheckBoxWriteLog: TCheckBox
+        Left = 0
+        Height = 19
+        Top = 0
+        Width = 87
+        Align = alLeft
+        Caption = 'Write log file'
+        TabOrder = 0
+      end
+    end
+  end
+  object GroupBoxLog: TGroupBox
+    Left = 4
+    Height = 256
+    Top = 100
+    Width = 539
+    Align = alClient
+    Caption = ' Log '
+    ChildSizing.LeftRightSpacing = 4
+    ChildSizing.TopBottomSpacing = 4
+    TabOrder = 1
+  end
+  object TimerInject: TTimer
+    Enabled = False
+    OnTimer = TimerInjectTimer
+    Left = 172
+    Top = 120
+  end
+end
